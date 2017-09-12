@@ -87,18 +87,27 @@
                 let timer = setInterval(function(){
                     if(timerTime<=0.1){
                         clearInterval(timer);
-                        alert( (score1>score2 ? player1 : (score1<score2 ? player2 : 'You both')) + ' won the game with score '+ 
-                                (score1>score2 ? (score1 + '-' + score2) : (score2 + '-' + score1)) +' ! Congratualtion :-)');
-                        let reenter = confirm('Lets play again. Do you want to enter player names and time again?');
-                        if(reenter){
-                            player1 = prompt("First players name?", "Hodor");
-                            player2 = prompt("Second players name?", "Hodor Hodor");
-                            time = prompt("How long you want to play the game (in seconds, min 10)?", "10");
-                        }
-                        init();
+                        document.querySelector('#timer').innerHTML = "STOP";
+                        document.querySelector('#player1').disabled = true;
+                        document.querySelector('#player2').disabled = true;
+                        setTimeout(function(){
+                            alert( (score1>score2 ? player1 : (score1<score2 ? player2 : 'You both')) + ' won the game with score '+ 
+                                    (score1>score2 ? (score1 + '-' + score2) : (score2 + '-' + score1)) +' ! Congratualtion :-)');
+                            let reenter = confirm('Lets play again. Do you want to enter player names and time again?');
+                            if(reenter){
+                                player1 = prompt("First players name?", "Hodor");
+                                player2 = prompt("Second players name?", "Hodor Hodor");
+                                time = prompt("How long you want to play the game (in seconds, min 10)?", "10");
+                            }
+                            document.querySelector('#player1').disabled = false;
+                            document.querySelector('#player2').disabled = false;
+                            init();
+                        }, 2000);
                     }
-                    timerTime -= .1;
-                    document.querySelector('#timer').innerHTML = timerTime.toFixed(2);
+                    else {
+                        timerTime -= .1;
+                        document.querySelector('#timer').innerHTML = timerTime.toFixed(2);
+                    }
                 }, 100);
             }
             init();
