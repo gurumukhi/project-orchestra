@@ -3,7 +3,7 @@
     <head>
         <title>WhozFast 13kGame</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"> 
         <style>
             html, body {
                 height: 100%;
@@ -11,7 +11,7 @@
             }
 
             input[type=button] {
-                width:100%;
+                width:98%;
                 height:47%;
                 border: 5px solid yellow;
                 margin: 1% 1% 1% 1%;
@@ -70,14 +70,18 @@
                     time = 5;
                 }
                 timerTime = time;
+                if(!player1){
+                    player1 = "Hoder";
+                }
+                if(!player2){
+                    player2 = "Hoder Hoder";
+                }
                 
                 document.querySelector('#player1').value = player1 + ' : ' + score1;
                 document.querySelector('#player2').value = player2 + ' : ' + score2;
 
                 let timer = setInterval(function(){
-                    timerTime -= .1;
-                    document.querySelector('#timer').innerHTML = timerTime.toFixed(2);
-                    if(timerTime<=0){
+                    if(timerTime<=0.1){
                         clearInterval(timer);
                         alert( (score1>score2 ? player1 : (score1<score2 ? player2 : 'You both')) + ' won the game with score '+ 
                                 (score1>score2 ? (score1 + '-' + score2) : (score2 + '-' + score1)) +' ! Congratualtion :-)');
@@ -89,6 +93,8 @@
                         }
                         init();
                     }
+                    timerTime -= .1;
+                    document.querySelector('#timer').innerHTML = timerTime.toFixed(2);
                 }, 100);
             }
             init();
