@@ -14,7 +14,7 @@
                 height:47%;
                 border: 5px solid yellow;
                 margin: 1% 1% 1% 1%;
-                font-size: 20px;
+                font-size: 60px;
                 padding: 1% 1% 1% 1%;
                 color: white;
             }
@@ -28,16 +28,16 @@
             #timer {
                 float: left;
                 position: fixed;
-                top: 45%;
-                left: 45%;
-                width: 10%;
-                height: 10%;
+                top: 40%;
+                left: 40%;
+                width: 20%;
+                height: 20%;
                 border: 1px solid pink;
                 color: black;
                 background-color: white;
                 text-align: center;
                 vertical-align: text-bottom;
-                font-size: 30px;
+                font-size: 60px;
                 padding-top: 7px;
             }
         </style>
@@ -53,37 +53,38 @@
             let time = prompt("How long you want to play the game (in seconds, min 5)?", "10");
             alert('Player who taps screen more number of times in given time wins the game!');
 
+            document.querySelector('#player1').addEventListener('click', function(){
+                document.querySelector('#player1').value = player1 + ' : ' + ++score1;
+            });
+
+            document.querySelector('#player2').addEventListener('click', function(){
+                document.querySelector('#player2').value = player2 + ' : ' + ++score2;
+            });
+
             function init() {
                 score1 = 0;
                 score2 = 0;
                 time = parseInt(time);
-                if (isNaN(time) || time<10) {
-                    time = 10;
+                if (isNaN(time) || time<5) {
+                    time = 5;
                 }
                 timerTime = time;
                 
                 document.querySelector('#player1').value = player1 + ' : ' + score1;
                 document.querySelector('#player2').value = player2 + ' : ' + score2;
 
-                document.querySelector('#player1').addEventListener('click', function(){
-                    document.querySelector('#player1').value = player1 + ' : ' + ++score1;
-                });
-
-                document.querySelector('#player2').addEventListener('click', function(){
-                    document.querySelector('#player2').value = player2 + ' : ' + ++score2;
-                });
-
                 let timer = setInterval(function(){
                     timerTime -= .1;
                     document.querySelector('#timer').innerHTML = timerTime.toFixed(2);
                     if(timerTime<=0){
                         clearInterval(timer);
-                        alert( (score1>score2 ? player1 : (score1<score2 ? player2 : 'You both')) + ' won the game! Congratualtion :-)');
+                        alert( (score1>score2 ? player1 : (score1<score2 ? player2 : 'You both')) + ' won the game with score '+ 
+                                (score1>score2 ? (score1 + '-' + score2) : (score2 + '-' + score1)) +' ! Congratualtion :-)');
                         let reenter = confirm('Lets play again. Do you want to enter player names and time again?');
                         if(reenter){
                             player1 = prompt("First players name?", "Hodor");
                             player2 = prompt("Second players name?", "Hodor Hodor");
-                            time = prompt("How long you want to play the game (in seconds, min 10)?", "30");
+                            time = prompt("How long you want to play the game (in seconds, min 10)?", "10");
                         }
                         init();
                     }
