@@ -3,7 +3,7 @@
     <head>
         <title>WhozFast 13kGame</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=800, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"> 
         <style>
             html, body {
                 height: 100%;
@@ -11,10 +11,12 @@
             }
 
             input[type=button] {
+                float: left;
+                position: fixed;
+                left: 1%;
                 width:98%;
                 height:47%;
                 border: 5px solid yellow;
-                margin: 1% 1% 1% 1%;
                 font-size: 60px;
                 padding: 1% 1% 1% 1%;
                 color: white;
@@ -22,9 +24,11 @@
 
             #player1 {
                 background-color: red;
+                top: 1%;
             }
             #player2 {
                 background-color: chocolate;
+                top: 51%;
             }
             #timer {
                 float: left;
